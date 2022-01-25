@@ -1,0 +1,36 @@
+.TodoItem {
+  margin-left: auto;
+  margin-right: auto;
+
+  border-radius: 30px;
+  box-shadow: 1px 2px 5px 1px #f67200;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.TodoItem + .TodoItem {
+  margin-top: 20px;
+}
+
+.content {
+  cursor: pointer;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.content svg {
+  font-size: 1.5rem;
+  color: #f67200;
+}
+.content .text {
+  margin-left: 2px;
+  flex: 1;
+}
+.content.checked .text {
+  color: #6c567b;
+  text-decoration: line-through;
+  cursor: pointer;
+  opacity: 0.6;
+}
