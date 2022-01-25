@@ -8,6 +8,7 @@ const TodoInsert = ({
   onInsertTodo,
   selectedTodo,
   onRemove,
+  onUpdate,
 }) => {
   const [value, setValue] = useState("");
 
@@ -30,7 +31,15 @@ const TodoInsert = ({
   return (
     <div>
       <div className="background" onClick={onInsertToggle}></div>
-      <form onSubmit={onSubmit}>
+      <form
+        onSubmit={
+          selectedTodo
+            ? () => {
+                onUpdate(selectedTodo.id, value);
+              }
+            : onSubmit
+        }
+      >
         <input
           placeholder="Insert Todo List"
           value={value}
@@ -38,7 +47,11 @@ const TodoInsert = ({
         ></input>
         {selectedTodo ? (
           <div className="rewrite">
-            <TiPencil />
+            <TiPencil
+              onClick={() => {
+                onUpdate(selectedTodo.id, value);
+              }}
+            />
             <TiTrash
               onClick={() => {
                 onRemove(selectedTodo.id);

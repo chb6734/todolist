@@ -28,6 +28,9 @@ function App() {
     },
   ]);
   const onInsertToggle = () => {
+    if (selectedTodo) {
+      setSelectedTodo(null);
+    }
     setInsertToggle((prev) => !prev);
     setHiddenTogle((prev) => !prev);
   };
@@ -63,6 +66,13 @@ function App() {
     setSelectedTodo(todo);
   };
 
+  const onUpdate = (id, text) => {
+    onInsertToggle();
+    setTodos((todos) =>
+      todos.map((todo) => (todo.id === id ? { ...todo, text } : todo))
+    );
+  };
+
   return (
     <Template todoLength={todos.length}>
       <TodoList
@@ -82,6 +92,7 @@ function App() {
           onInsertToggle={onInsertToggle}
           onInsertTodo={onInsertTodo}
           onRemove={onRemove}
+          onUpdate={onUpdate}
         />
       )}
     </Template>
